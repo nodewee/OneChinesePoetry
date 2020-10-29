@@ -5,7 +5,7 @@
 
 <details>
   <summary>单首诗词 JSON 文件内容示例</summary>
-  <code><pre>
+<pre>
   {
     "title": "登戎州江樓閑望",
     "author": "幸夤遜",
@@ -17,10 +17,10 @@
         "遠岫似屏橫碧落，斷帆如葉截中流。"
     ]
    }
-  </pre></code>
+  </pre>
 </details>
 
-- 诗词访问路径：`https://nodewee.github.io/OneChinesePoetry/data/333/913.json`
+- 诗词访问路径示例：`https://nodewee.github.io/OneChinesePoetry/data/333/913.json`
 
 - 诗词数量/目录：目录 1～332 各有1000首。目录 333 有 913 首。
 
