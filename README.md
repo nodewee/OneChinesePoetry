@@ -4,7 +4,7 @@
 - 诗词来源：[chinese-poetry 项目](https://github.com/chinese-poetry/chinese-poetry)
 
 <details>
-  <summary>单首诗词文件内容举例</summary>
+  <summary>单首诗词 JSON 文件内容示例</summary>
   <code><pre>
   {
     "title": "登戎州江樓閑望",
@@ -20,7 +20,21 @@
   </pre></code>
 </details>
 
+- 诗词访问路径：`https://nodewee.github.io/OneChinesePoetry/data/333/913.json`
+
+- 诗词数量/目录：目录 1～332 各有1000首。目录 333 有 913 首。
+
+- 诗词内容范围：诗（唐、宋）和词
 
 
-- 授权 [MIT](/LICENSE.txt) LICENSE
+
+## 应用
+
+- iOS 桌面组件随机展示一条诗词（[Scriptable 脚本](https://nodewee.github.io/OneChinesePoetry/scripts/scriptable_RandomChinesePoetry/latest.js)）
+
+
+
+## 授权
+
+[MIT](/LICENSE.txt) LICENSE
 
