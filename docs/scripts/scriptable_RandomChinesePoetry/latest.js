@@ -1,0 +1,148 @@
+// OneChinesePoetry/scriptable_RandomChinesePoetry - https://git.io/JTMIv - MIT LICENSE
+// This script shows a chinese poetry from OneChinesePoetry project.
+// Version : 0.1.0
+
+// 配置参数
+max_lines = 5 //诗词显示最大行数，请依据 widget 高度而定
+
+//以下代码可以原封不动照搬
+let poetry = await loadPoetry(1)
+if (config.runsInWidget) {
+    let widget = await createWidget(poetry)
+    Script.setWidget(widget)
+} else if (config.runsWithSiri) {
+    let table = createTable(poetry)
+    await QuickLook.present(table)
+} else {
+    let table = createTable(poetry)
+    await QuickLook.present(table)
+}
+
+Script.complete()
+
+async function createWidget(poetry) {
+    // poetry{author,title,paragraphs}
+
+    let gradient = new LinearGradient()
+    gradient.locations = [0, 1]
+    gradient.colors = [
+        new Color("#b00a0fe6"),
+        new Color("#b00a0fb3")
+    ]
+    let widget = new ListWidget()
+    widget.backgroundColor = new Color("#b00a0f")
+    widget.backgroundGradient = gradient
+
+    // Show poetry title.
+    let title = poetry.title
+    let titleElement = widget.addText(title)
+    titleElement.font = Font.boldSystemFont(16)
+    titleElement.textColor = Color.white()
+    titleElement.minimumScaleFactor = 0.75
+    // Show subtitle
+    //  - author at left
+    let authorStack = widget.addStack()
+    let authorsElement = authorStack.addText(poetry.author)
+    authorsElement.font = Font.mediumSystemFont(12)
+    authorsElement.textColor = Color.white()
+    // authorsElement.textOpacity = 0.9
+    //  - period/type at right
+    // authorStack.addSpacer()
+    let periodElement = authorStack.addText('  ' + [poetry.period, poetry.type].join('/'))
+    periodElement.font = Font.mediumSystemFont(12)
+    periodElement.textColor = Color.white()
+    // periodElement.textOpacity = 0.8
+
+
+    // Show poetry content.
+    let count = 0
+    for (para of poetry.paragraphs) {
+        count++;
+        let line = ''
+        if (count == max_lines) {
+            line = '...'
+        }
+        else {
+            line = para
+        }
+        let contentElement = widget.addText(line)
+        contentElement.font = Font.mediumSystemFont(16)
+        contentElement.textColor = Color.white()
+        contentElement.minimumScaleFactor = 0.6
+        if (count == max_lines) {
+            break
+        }
+    }
+
+
+    // Set URL to open when tapping widget.
+    widget.url = poetry.url
+
+    return widget
+}
+
+function createTable(poetry) {
+    let table = new UITable()
+    // title
+    let row_title = new UITableRow()
+    row_title.addText(poetry.title)
+    table.addRow(row_title)
+
+    // subtitle : author, period, type
+    let row_author = new UITableRow()
+    row_author.addText(poetry.author)
+    row_author.addText([poetry.period, poetry.type].join('/'))
+    table.addRow(row_author)
+
+    for (line of poetry.paragraphs) {
+        let row = new UITableRow()
+        let titleCell = row.addText(line)
+        // imageCell.widthWeight = 20
+        titleCell.widthWeight = 80
+        row.height = 30
+        row.cellSpacing = 10
+        // row.onSelect = (idx) => {
+        //     let item = items[idx]
+        //     Safari.open(item.url)
+        // }
+        row.dismissOnSelect = false
+        table.addRow(row)
+    }
+    return table
+}
+
+async function loadPoetry(index) {
+    // random select
+    let last_path_index = 333
+    let last_file_index = 912
+    let path_index = randomNum(1, last_path_index)
+    let file_index = 0
+    if (path_index == last_path_index) {
+        file_index = randomNum(1, last_file_index)
+    }
+    else {
+        file_index = randomNum(1, 1000)
+    }
+
+    // request
+    let url = "https://nodewee.github.io/OneChinesePoetry/data/" + path_index.toString() + '/' + file_index.toString() + ".json";
+    let req = new Request(url)
+    let json = await req.loadJSON()
+    json.url = url
+    return json
+}
+
+
+function randomNum(minNum, maxNum) {
+    switch (arguments.length) {
+        case 1:
+            return parseInt(Math.random() * minNum + 1, 10);
+            break;
+        case 2:
+            return parseInt(Math.random() * (maxNum - minNum + 1) + minNum, 10);
+            break;
+        default:
+            return 0;
+            break;
+    }
+} 
