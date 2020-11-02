@@ -5,7 +5,6 @@
 // 配置参数
 max_lines = 5 //诗词显示最大行数，请依据 widget 高度而定
 
-//以下代码可以原封不动照搬
 let poetry = await loadPoetry(1)
 if (config.runsInWidget) {
     let widget = await createWidget(poetry)
