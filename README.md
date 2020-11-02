@@ -24,13 +24,13 @@
 
 - 诗词数量/目录：目录 1～332 各有1000首。目录 333 有 913 首。
 
-- 诗词内容范围：诗（唐、宋）和词
+- 诗词内容范围：唐和宋的诗、宋词。
 
 
 
 ## 应用
 
-- iOS 桌面组件随机展示一条诗词（[Scriptable 脚本](https://nodewee.github.io/OneChinesePoetry/scripts/scriptable_RandomChinesePoetry/latest.js)）
+- iOS 桌面组件随机展示一首诗词（[Scriptable 脚本](https://nodewee.github.io/OneChinesePoetry/scripts/scriptable_RandomChinesePoetry/latest.js)）
 
 
 
