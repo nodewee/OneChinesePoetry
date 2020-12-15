@@ -30,8 +30,8 @@
 
 ## 应用
 
-- iOS 桌面组件随机展示一首诗词（[Scriptable 脚本](https://nodewee.github.io/OneChinesePoetry/scripts/scriptable_RandomChinesePoetry/latest.js)）
-
+- iOS 桌面组件随机展示一首诗词（[Scriptable 脚本](https://nodewee.github.io/OneChinesePoetry/scripts/scriptable_RandomChinesePoetry/)）
+  > 如何使用可以参考文章：[iOS 用 Scriptable 添加自定义桌面组件](https://toulan.fun/handbook/use-scriptable-to-add-customize-widgets-on-ios-desktop.html)
 
 
 ## 授权
